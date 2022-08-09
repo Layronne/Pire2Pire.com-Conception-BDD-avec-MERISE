@@ -1,24 +1,14 @@
-|    Nom    | Signification                      | Mode | Exemple                                     |
-|-----------|------------------------------------|------|---------------------------------------------|
-| UuidApprenant  | Identifiant de la personne         | M    | 25                                          |
-| Lastname  | Nom de la personne                 | M    | Durant                                      |
-| Firstname | Prénom de la personne              | M    | Marie                                       |
-| RegNumber | Numéro d'inscription de l'apprenti | M    | 0242120002                                  |
-| Address   | Adresse de l'apprenti              | M    | 25 rue du pont                              |
-| Birthdate | Date de naissance de l'apprenti    | M    | 25/06/1987                                  |
-| CodeT     | Code du formateur                  | M    | HH                                          |
-| NumF      | Numéro de formation                | M    | 5                                           |
-| NameF     | Nom de la formation                | M    | DevOps                                      |
-| NumM      | Numéro du module                   | M    | 5                                           |
-| TitleM    | Intitulé du module                 | M    | Commandes de base Git                       |
-| DurationM | Durée du module                    | M    | 14                                          |
-| EducObjM  | Objectif pédagogique du module     | M    | Comprendre Git                              |
-| NumC      | Numéro du contenu                  | M    | 1                                           |
-| TextC     | Texte du contenu                   | M    | Initiation à Git                            |
-| ImageC    | Image du contenu                   | M    | LogoGithub.png                              |
-| VideoC    | Video du contenu                   | M    | https://www.youtube.com/watch?v=WxMFZncm12s |
-| NumT      | Numéro du tag                      | M    | 6                                           |
-| NameT     | Nom du tag                         | M    | Github                                      |
-| StateM    | Etat de fin de module              | M    | False                                       |
-| ValidM    | Validation du module               | M    | True                                        |
-| FinishF   | Formation considéré terminer       | M    | True                                        |
+|    Nom          | Signification                      | Mode | Exemple                                     |
+|-----------------|------------------------------------|------|---------------------------------------------|
+| Uuid            | Identifiant de la personne         | M    | 04                                          |
+| Lastname        | Nom de la personne                 | M    | Dupond                                      |
+| Firstname       | Prénom de la personne              | M    | Regis                                       |
+| Address         | Adresse de l'apprenti              | M    | 35 rue du 8 mai 1945                        |
+| Birthdate       | Date de naissance de l'apprenti    | M    | 13/10/1971                                  |
+| TitleModule     | Intitulé du module                 | M    | le CI-CD                                    |
+| TimeMdule       | Durée du module                    | M    | 1h10                                        |
+| objectifModule  | Objectif pédagogique du module     | M    | comprendre le but du CI-CD                  |
+| ContentModule   | Contenu du module                  | M    | blablablalbalbalb                           |
+| titleformation  | titre de la formation              | M    | DEVOPS                                      |
+| NameT           | Nom du tag                         | M    | Github                                      |
+| tagModule       | tag du module                      | M    | #devops #cicd #githubaction                 |
