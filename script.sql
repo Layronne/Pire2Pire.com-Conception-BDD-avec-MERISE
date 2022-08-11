@@ -1,38 +1,100 @@
-CREATE TABLE apprenant(
-   unique_apprenant_number INT,
-   first_name_apprenant VARCHAR(50),
-   last_name_apprenant VARCHAR(50),
-   address_apprenant TEXT,
-   born_date_apprenant DATE,
-   PRIMARY KEY(unique_apprenant_number)
+CREATE TABLE Human(
+   UuidHuman INT,
+   FirstNameHuman VARCHAR(50),
+   LastNameHuman VARCHAR(50),
+   address VARCHAR(50),
+   BirthDateHuman VARCHAR(50),
+   PRIMARY KEY(UuidHuman)
 );
 
-CREATE TABLE formateur(
-   unique_formateur_number INT,
-   first_name_formateur VARCHAR(50),
-   last_name_formateur VARCHAR(50),
-   PRIMARY KEY(unique_formateur_number)
+CREATE TABLE Tag(
+   UuidTag INT,
+   Tag VARCHAR(50),
+   PRIMARY KEY(UuidTag)
 );
 
-CREATE TABLE module(
-   unique_module_number INT,
-   version_module INT,
-   title_module TEXT,
-   objectif_module TEXT,
-   content_module TEXT,
-   time_module TEXT,
-   tag_module TEXT,
-   PRIMARY KEY(unique_module_number),
-   FOREIGN KEY(unique_formateur_number) REFERENCE formateur(unique_formateur_number),
-   FOREIGN KEY(unique_apprenant_number) REFERENCE apprenant(unique_apprenant_number)
+CREATE TABLE Former(
+   UuidFormer INT,
+   UuidHuman INT NOT NULL,
+   PRIMARY KEY(UuidFormer),
+   UNIQUE(UuidHuman),
+   FOREIGN KEY(UuidHuman) REFERENCES Human(UuidHuman)
 );
 
-CREATE TABLE formation(
-   unique_formation_number INT,
-   title_formation TEXT,
-   PRIMARY KEY(unique_formation_number),
-   FOREIGN KEY(unique_module_number) REFERENCE module(unique_module_number),
-   FOREIGN KEY(unique_formateur_number) REFERENCE formateur(unique_formateur_number),
-   FOREIGN KEY(unique_apprenant_number) REFERENCE apprenant(unique_apprenant_number)
+CREATE TABLE Student(
+   UuidStudent INT,
+   UuidHuman INT NOT NULL,
+   PRIMARY KEY(UuidStudent),
+   UNIQUE(UuidHuman),
+   FOREIGN KEY(UuidHuman) REFERENCES Human(UuidHuman)
 );
-   
+
+CREATE TABLE Course(
+   UuidCourse INT,
+   TitleCourse VARCHAR(50),
+   ObjectifCourse VARCHAR(50),
+   TimeCourse TIME,
+   ContentCourse TEXT,
+   ImgCourse VARCHAR(50),
+   VideoCourse VARCHAR(50),
+   UuidFormer INT NOT NULL,
+   PRIMARY KEY(UuidCourse),
+   FOREIGN KEY(UuidFormer) REFERENCES Former(UuidFormer)
+);
+
+CREATE TABLE Formations(
+   UuidFormation INT,
+   NameFormation VARCHAR(50),
+   UuidFormer INT NOT NULL,
+   PRIMARY KEY(UuidFormation),
+   FOREIGN KEY(UuidFormer) REFERENCES Former(UuidFormer)
+);
+
+CREATE TABLE Chapter(
+   UuidChapter INT,
+   NbrChapter DECIMAL(15,2),
+   UuidCourse INT NOT NULL,
+   PRIMARY KEY(UuidChapter),
+   FOREIGN KEY(UuidCourse) REFERENCES Course(UuidCourse)
+);
+
+CREATE TABLE Participate(
+   UuidFormation INT,
+   UuidStudent INT,
+   PRIMARY KEY(UuidFormation, UuidStudent),
+   FOREIGN KEY(UuidFormation) REFERENCES Formations(UuidFormation),
+   FOREIGN KEY(UuidStudent) REFERENCES Student(UuidStudent)
+);
+
+CREATE TABLE complete(
+   UuidCourse INT,
+   UuidStudent INT,
+   PRIMARY KEY(UuidCourse, UuidStudent),
+   FOREIGN KEY(UuidCourse) REFERENCES Course(UuidCourse),
+   FOREIGN KEY(UuidStudent) REFERENCES Student(UuidStudent)
+);
+
+CREATE TABLE Belongs(
+   UuidFormation INT,
+   UuidChapter INT,
+   PRIMARY KEY(UuidFormation, UuidChapter),
+   FOREIGN KEY(UuidFormation) REFERENCES Formations(UuidFormation),
+   FOREIGN KEY(UuidChapter) REFERENCES Chapter(UuidChapter)
+);
+
+CREATE TABLE contain(
+   UuidCourse INT,
+   UuidTag INT,
+   PRIMARY KEY(UuidCourse, UuidTag),
+   FOREIGN KEY(UuidCourse) REFERENCES Course(UuidCourse),
+   FOREIGN KEY(UuidTag) REFERENCES Tag(UuidTag)
+);
+
+CREATE TABLE Validate(
+   UuidStudent INT,
+   UuidChapter INT,
+   status VARCHAR(50),
+   PRIMARY KEY(UuidStudent, UuidChapter),
+   FOREIGN KEY(UuidStudent) REFERENCES Student(UuidStudent),
+   FOREIGN KEY(UuidChapter) REFERENCES Chapter(UuidChapter)
+);
