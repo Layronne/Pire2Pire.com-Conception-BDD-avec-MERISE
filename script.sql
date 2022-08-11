@@ -14,7 +14,7 @@ CREATE TABLE Tag(
 );
 
 CREATE TABLE Former(
-   UuidFormer INT,
+   UuidFormer INT pk,
    UuidHuman INT NOT NULL,
    PRIMARY KEY(UuidFormer),
    UNIQUE(UuidHuman),
@@ -69,6 +69,7 @@ CREATE TABLE Participate(
 CREATE TABLE complete(
    UuidCourse INT,
    UuidStudent INT,
+   status LOGICAL,
    PRIMARY KEY(UuidCourse, UuidStudent),
    FOREIGN KEY(UuidCourse) REFERENCES Course(UuidCourse),
    FOREIGN KEY(UuidStudent) REFERENCES Student(UuidStudent)
@@ -93,7 +94,7 @@ CREATE TABLE contain(
 CREATE TABLE Validate(
    UuidStudent INT,
    UuidChapter INT,
-   status VARCHAR(50),
+   status LOGICAL,
    PRIMARY KEY(UuidStudent, UuidChapter),
    FOREIGN KEY(UuidStudent) REFERENCES Student(UuidStudent),
    FOREIGN KEY(UuidChapter) REFERENCES Chapter(UuidChapter)
